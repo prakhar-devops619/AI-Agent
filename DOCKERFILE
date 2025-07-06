@@ -1,0 +1,15 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+MKDIR agent
+
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+COPY * /agent/
+
+ENV OPENAI_API_KEY=test
+ENV SLACK_WEBHOOK_URL=test
+
+CMD ["python3", "agent/agent.py"]
